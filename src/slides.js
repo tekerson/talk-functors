@@ -5,6 +5,5 @@ module.exports = [
   'src/functor.md',
   'src/duality.md',
   'src/homework.md',
-  'src/thanks.md',
-  'src/resources.md'
+  'src/thanks.md'
 ];
