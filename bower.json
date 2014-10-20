@@ -1,0 +1,17 @@
+{
+  "name": "functors",
+  "version": "0.0.1",
+  "authors": [
+    "Brenton Alker <brenton@tekerson.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "reveal.js": "~2.6.2"
+  }
+}

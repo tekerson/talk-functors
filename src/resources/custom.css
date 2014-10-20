@@ -1,0 +1,10 @@
+code {
+  font-size: 30px !important;
+  line-height: 1.5em !important;
+  box-shadow: 0 0 6px rgba(0,0,0,.3);
+  padding: 5px !important;
+}
+
+pre code {
+  box-shadow: none;
+}

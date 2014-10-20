@@ -1,0 +1,21 @@
+{
+  "name": "talk-functors",
+  "version": "0.0.1",
+  "description": "BFPG - CIS194 - Week 9, Functors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brenton Alker",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-bower": "0.0.6",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.4.1",
+    "gulp-pandoc": "^0.2.0",
+    "gulp-shell": "^0.2.9"
+  },
+  "dependencies": {
+  }
+}
