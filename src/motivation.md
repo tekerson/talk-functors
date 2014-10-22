@@ -20,7 +20,7 @@ You may remember me from such functions as...
 
 ## The Pattern
 
-Applying a function to the contents of a container.
+Applying a function to the elements of a structure.
 
 . . .
 

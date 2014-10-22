@@ -14,55 +14,111 @@ fmap :: (a -> b) -> f a -> f b
 fmap :: (a -> b) -> (f a -> f b)
 ```
 
+## Demo
+
 ## Lists as Container
 
 Lists represent a linear collection
 
+. . .
+
 ```haskell
-goblinsHealth :: [Int]
-goblinsHealth = [8, 5, 6, 5]
+goblins :: [Int]
+goblins = [8, 5, 6, 5]
+```
 
-aoeDamage :: Int -> Int
-aoeDamage h = h - 2
+. . .
 
-applyAoe :: (Functor f) => f Int -> f Int
-applyAoe = fmap aoeDamage
+``` haskell
+attack :: Int -> Int
+attack hp = hp - 2
+```
 
-newHealth = applyAoe goblinsHealth
+. . .
+
+``` haskell
+result :: [Int]
+result = fmap attack goblins
+```
+
+. . .
+
+```haskell
+-- [6, 3, 4, 3]
 ```
 
 ## Lists as Context
 
-Lists represent non-determinism
+Lists represent a non-deterministic value
+
+. . .
 
 ```haskell
 roll :: [Int]
 roll = [1..20]
+```
 
+. . .
+
+```haskell
 modifiers :: Int -> Int
-modifiers = (* 2) . (+ 1)
+modifiers
+  = (* 2)
+  . (+ 1)
+```
 
-applyModifiers :: (Functor f) => f Int -> f Int
-applyModifiers = fmap modifiers
+. . .
 
-initiative = applyModifiers roll
+```haskell
+result :: [Int]
+result = fmap modifiers roll
+```
+
+. . .
+
+```haskell
+-- [4, 6, 8, 10 ... 40, 42]
 ```
 
 ## Maybe as Context
 
-Maybe represents a possibly-missing context
+Maybe represents a context with possibly-missing value
+
+. . .
 
 ```haskell
-type WeaponDamage = Int
-
-axe, hand :: Maybe WeaponDamage
-axe = Just 10
-hand = Nothing
-
-modifiers = (* 2) . (+ 1)
-applyModifiers = fmap modifiers
-
-axeDamage  = applyModifiers axe   -- Just 22
-handDamage = applyModifiers hand  -- Nothing
+handDamage :: Maybe Int
+handDamage = Nothing
 ```
 
+. . .
+
+```haskell
+modifiers :: Int -> Int
+modifiers = (* 2) . (+ 1)
+```
+
+. . .
+
+```haskell
+result :: Maybe Int
+result = fmap modifiers handDamage
+```
+
+. . .
+
+```haskell
+-- Nothing
+```
+
+## But
+
+Not all Functors fit both Context and Container intuition.
+
+Some are more intuitive one way.
+
+Some don't fit either intuition.
+
+. . .
+
+The instance is the truth.

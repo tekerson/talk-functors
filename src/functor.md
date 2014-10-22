@@ -10,10 +10,6 @@ fmap :: (a -> b) -> f a -> f b
 >  - `b :: *`
 >  - `f :: * -> *`
 
-. . .
-
-Inferred because it is being applied to argument of Kind `*`
-
 ## Great!
 
 Now we can write a generic mapping function!
@@ -30,7 +26,7 @@ fmap h fa = ???
 
 Not so fast...
 
-Each of the mapping functions depend on the specific implementation of `f`
+Each of the implementation of `fmap` depend on the specific instance of `f`
 
 # The Solution
 
@@ -42,12 +38,12 @@ A Typeclass.
 
 ```haskell
 class Functor f where
-  fmap f :: (a -> b) -> f a -> f b
+  fmap :: (a -> b) -> f a -> f b
 ```
 
 . . .
 
-Now, implement this class for any Type where it makes sense to have "mapping"
+Now, instance this class for any Type where it makes sense to have "mapping"
 
 ## Notice
 
@@ -55,11 +51,11 @@ Now, implement this class for any Type where it makes sense to have "mapping"
 f :: * -> *
 ```
 
-Due to its usage in `fmap`'s Type declaration
+Due to its usage in `fmap`'s Type signature
 
 ```haskell
 class Functor f where
-  fmap f :: (a -> b) -> f a -> f b
+  fmap :: (a -> b) -> f a -> f b
 ```
 
 . . .
@@ -90,7 +86,7 @@ List
 ```haskell
 instance Functor [] where
   fmap _ [] = []
-  fmap h (x:xs) = h x : fmap xs
+  fmap h (x:xs) = h x : fmap h xs
 ```
 
 . . .
@@ -115,13 +111,32 @@ Since `IO :: * -> *` it can be a Functor
     fmap f ioa = ioa >>= (\a -> return (f a))
 ```
 
-. . .
-
-or...
+## Either
 
 ```haskell
-instance Functor IO where
-  fmap f ioa = ioa >>= (return . f)
+data Either a b = Left a | Right b
+```
+
+. . .
+
+```haskell
+Either :: * -> * -> *
+```
+
+So, it can't be a functor?
+
+. . .
+
+```haskell
+Either a :: * -> *
+```
+
+. . .
+
+```haskell
+instance Functor (Either a) where
+  fmap h (Right x) = Right (h x)
+  fmap _ (Left x) = Left x
 ```
 
 ## (->)
@@ -130,23 +145,19 @@ Wat?
 
 . . .
 
-We saw that
-
 ```haskell
 (->) :: * -> * -> *
 ```
 
-Which can't be a Functor.
-
 . . .
-
-But, if we partially apply it, we get
 
 ```haskell
 (->) e :: * -> *
 ```
 
-So, it is a candidate for Functor.
+. . .
+
+What would the implementation be?
 
 . . .
 
