@@ -73,7 +73,16 @@ Applying `Type Constructors` to `Types` is analogous to applying `Functions` to 
 
 ## Apply Them
 
+### Map
+
+> - `Map :: * -> * -> *`
+> - `Map Int :: * -> *`
 > - `Map Int String :: *`
+
+### (->)
+
+> - `(->) :: * -> * -> *`
+> - `(->) Int :: * -> *`
 > - `(->) Int String :: *`
 > - `Int -> String :: *`
 
