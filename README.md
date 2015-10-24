@@ -1,3 +1,9 @@
+# BFPG - Functors
+
+This is my talk for the Brisbane Functional Programming Group (BFPG) based on CIS194 "Introduction to Haskell" course from UPenn. Specifically, Brent Yorgey's lecture notes (http://www.seas.upenn.edu/~cis194/spring13/index.html).
+
+The video of the talk is available at http://vimeo.com/110492903 and the rest of the series can be found at https://github.com/bfpg/cis194-yorgey-lectures
+
 # Abstract
 
 We've seen Lists, Trees and IO. But what have they got in common? It turns out, lots!
